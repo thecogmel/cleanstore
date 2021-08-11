@@ -71,7 +71,7 @@
 			<plugin>
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
-				<scope>annotationProcessor</scope>
+				<scope>compile</scope>
 			</plugin>
 		</plugins>
 	</build>
