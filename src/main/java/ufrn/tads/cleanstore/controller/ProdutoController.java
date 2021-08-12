@@ -7,10 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ufrn.tads.cleanstore.model.Produto;
@@ -66,6 +68,20 @@ public class ProdutoController {
 		Produto produto = new Produto();
 		model.addAttribute("produto", produto);
 		return "cadastro";
+	}
+
+    @RequestMapping("/deletar/{id}")
+	public String doDelete(@PathVariable(name = "id") Long id){
+		service.delete(id);
+		return "redirect:/";
+	}
+
+    @RequestMapping("/editar/{id}")
+	public ModelAndView getFormEdicao(@PathVariable(name = "id") Long id){
+		ModelAndView modelAndView = new ModelAndView("edicao");
+		Produto produto = service.findById(id);
+		modelAndView.addObject("produto",produto);
+		return modelAndView;
 	}
 
 }
