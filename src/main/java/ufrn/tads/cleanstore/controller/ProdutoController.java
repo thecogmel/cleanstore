@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -75,9 +76,9 @@ public class ProdutoController {
 			return "cadastro";
 		} else {
 
-			produto.setImagemUri(file.getOriginalFilename());
+			produto.setImagemUri(UUID.randomUUID().toString() + file.getOriginalFilename());
 			service.save(produto);
-			fileStorageService.save(file);
+			fileStorageService.save(file, produto);
 
 			redirectAttributes.addAttribute("msg", "Cadastro realizado com sucesso");
 			return "redirect:/";

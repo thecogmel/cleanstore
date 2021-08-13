@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import ufrn.tads.cleanstore.model.Produto;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -34,9 +36,9 @@ public class FileStorageService{
 		}
 	}
 
-	public void save(MultipartFile file) {
+	public void save(MultipartFile file, Produto produto) {
 		try {
-			Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+			Files.copy(file.getInputStream(), this.root.resolve(produto.getImagemUri()));
 		} catch (Exception e) {
 			throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
 		}
