@@ -75,12 +75,6 @@ public class ProdutoController {
 			return "cadastro";
 		} else {
 
-			/*
-			 * System.out.println(file.getOriginalFilename());
-			 * System.out.println(file.getContentType());
-			 * System.out.println(file.getSize());
-			 */
-
 			produto.setImagemUri(file.getOriginalFilename());
 			service.save(produto);
 			fileStorageService.save(file);
