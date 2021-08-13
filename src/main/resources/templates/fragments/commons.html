@@ -17,7 +17,7 @@
           <i class="bi-cart-fill me-1"></i>
           Carrinho
           <span th:if="${!session.isEmpty()}">
-            <span th:text="${session.carrinho.size()}" class="badge bg-dark text-white ms-1 rounded-pill">
+            <span th:text="${session.cart.size()}" class="badge bg-dark text-white ms-1 rounded-pill">
               0
             </span>
           </span>
