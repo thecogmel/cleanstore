@@ -120,10 +120,15 @@ public class ProdutoController {
 		return "redirect:/";
 	}
 
-	@RequestMapping("/verCarrinho/{id}")
-	public String getVerCarrinho(@PathVariable(name = "id") Long id) {
-		Produto produto = service.findById(id);
-		carrinho.add(produto);
-		return "redirect:/";
+	@RequestMapping("/verCarrinho")
+	public String getVerCarrinho(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+
+		if (session.getAttribute("cart") == null) {
+			return "redirect:/";
+		}
+		/* ArrayList<Produto> produtosCarrinho = (ArrayList<Produto>) session.getAttribute("cart"); */
+
+		return "carrinho";
 	}
 }
