@@ -1,6 +1,6 @@
 package ufrn.tads.cleanstore.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,11 +24,13 @@ public class Produto {
 
 	String nome;
 
+	Date deleted;
+	
 	@Size(min = 2, max = 25, message = Mensagem.ERRO_TAMANHO_STRING)
 	String marca;
 	
     @Min(value = 1900, message = Mensagem.ERRO_ANO_MINIMO)
-	Date fabricacao;
+	String fabricacao;
 	Float preco;
 	String tipo;
 	String imagemUri;

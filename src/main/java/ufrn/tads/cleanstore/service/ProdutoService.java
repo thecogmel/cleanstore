@@ -1,7 +1,7 @@
 package ufrn.tads.cleanstore.service;
 
+import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,11 @@ public class ProdutoService {
 	}
 
 	public void delete(Long id){
-		repository.deleteById(id);
+		Date data = new Date();
+		Produto produto = repository.getById(id);
+		produto.setDeleted(data);
+
+		repository.save(produto);
 	}
 
 	public Produto findById(Long id){
